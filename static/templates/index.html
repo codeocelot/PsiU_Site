@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Psi Upsilon- University of British Columbia
+{% endblock %}
+
+{% block heading %}
+Psi Upsilon <small>Crafting the finest in undergraduate men since 1833</small>
+{% endblock %}
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide">
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="/static/media/photos/Formal_2013/DSC_5344.jpg" alt="a photo" />
+			<div class="carousel-caption">
+				<p>Cam Grant & ladies</p>
+			</div>
+		</div>
+		<!-- <div class="item">
+			<img src="/static/media/photos/Formal_2013/DSC_5359.jpg" alt="another photo" />
+			<div class="carousel-caption">
+				<p>Alex</p>
+			</div>
+		</div> -->
+		{% for image in Images %}
+		<div class="item">
+			<img src={{ image.image.url }} alt={{ image.caption }} />
+			<div class="carousel-caption">
+				<p>{{ image.caption }}</p>
+			</div>
+		</div>
+		{% endfor %}
+</div>
+</div><!-- /.carousel-inner -->
+  <!--  Next and Previous controls below
+        href values must reference the id for this carousel -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel({
+    	interval: 5000
+    });
+  });
+</script>
+{% endblock %}
+

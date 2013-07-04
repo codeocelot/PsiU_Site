@@ -1,0 +1,62 @@
+<!-- Brother of the month -->
+{% extends "base.html" %}
+
+{% block title %}
+Brother of the month
+{% endblock %}
+
+{% block heading %}
+<h1>Brother of the Month <small> Spotlight on excellence in all aspects of life </small></h1>
+{% endblock %}
+
+{% block content %}
+<!-- month navigator -->
+<div class="span4">
+  <div class="well">
+    <ul class="nav nav-list">
+      <li class="nav-header">Brothers of the Month:</li>
+      {% for entry in botm_entries %}
+      <li><a href="#{{ entry.month }}">{{ entry.month }}-{{ entry.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+
+{% for entry in botm_entries %}
+<div class="span4">
+  <div class="thumbnail" style="background-color:#ffffff;">
+    <img src="{{ entry.image.url }}" class="img-polaroid" width='200px' height='200px' >
+    <div class="caption">
+      <h3>{{ entry.month}} - {{ entry.name }}</h3>
+      <p>{{ entry.image_caption }}</p>
+
+
+      <!-- Button to trigger modal -->
+      <a href="#{{ entry.month }}Modal" role="button" class="btn btn-primary" data-toggle="modal">View profile</a>
+
+      <!-- Modal -->
+      <div id="{{ entry.month }}Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Brother {{ entry.name }}'s Profile</h3>
+        </div>
+        <div class="modal-body">
+          <p><strong>Year of Initation: </strong>{{ entry.year_of_initiation }}</p>
+          <p><strong>Year of Graduation: </strong>{{ entry.year_of_graduation }}</p>
+          <p><strong>Major: {{ entry.major }} </strong></p>
+          <p>{{ entry.description }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+
+
+
+{% endblock %}
