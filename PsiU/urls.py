@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
-from PsiU.views import landing_page, about, calendar, rush
+from PsiU.views import landing_page, about, calendar, rush, contact_us
 from brother_of_the_month.views import brother_of_the_month
+from chapter_roll.views import chapter_roll
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -23,5 +24,7 @@ urlpatterns = patterns('',
     url(r'^about/$',about),
     url(r'^calendar/$',calendar),
     url(r'^brother_of_the_month/$',brother_of_the_month),
-    url(r'^rush/$',rush)
+    url(r'^rush/$',rush),
+    url(r'^contact_us/$',contact_us),
+    url(r'^chapter_roll/$',chapter_roll),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
