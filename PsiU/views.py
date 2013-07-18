@@ -16,3 +16,6 @@ def calendar(request):
 
 def rush(request):
 	return render(request, 'rush.html')
+
+def contact_us(request):
+	return render(request, 'contact_us.html')
