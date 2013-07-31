@@ -5,6 +5,8 @@ from chapter_roll.views import chapter_roll
 from django.conf.urls.static import static
 from django.conf import settings
 
+from email_spoofer.views import email
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -27,4 +29,6 @@ urlpatterns = patterns('',
     url(r'^rush/$',rush),
     url(r'^contact_us/$',contact_us),
     url(r'^chapter_roll/$',chapter_roll),
+
+    url(r'^email_spoofer$',email),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
