@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Email Spoofer</title>
+
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="hero-unit">
+      <h1>Email Spoofer</h1>
+    </div>
+
+
+<div class="container well">
+	<form action="" method="post">
+	{% csrf_token %}
+	{{ email_form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+</div>
+</body>
+</html>

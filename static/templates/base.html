@@ -1,53 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
 
-    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/custom.css" rel="stylesheet">
+        <!-- <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+        <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/static/css/custom.css" rel="stylesheet">
+
+        <style type="text/css">
+            /* Sticky footer styles
+            -------------------------------------------------- */
+
+            html,
+            body {
+                height: 100%;
+                /* The html and body elements cannot have any padding or margin. */
+            }
+
+            /* Wrapper for page content to push down footer */
+            #wrap {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                /* Negative indent footer by it's height */
+                margin: 0 auto -60px;
+            }
+
+            /* Set the fixed height of the footer here */
+            #push,
+            #footer {
+                height: 60px;
+            }
+            #footer {
+                background-color: #000000;
+            }
+
+            /* Lastly, apply responsive CSS fixes as necessary */
+            @media (max-width: 767px) {
+                #footer {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+
+        </style>
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="{{ STATIC_URL }}/static/favicon/favicon.png" />
+
+        <!-- GOOGLE Webmaster tools -->
+        <meta name="google-site-verification" content="1aY82-Ps6GWtq8vxLHg4K0il_gTLoj6iFKzhgf-4o_Q" />
 
 
+    </head>
 
-  </head>
-
-  <body>
+    <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=408380382601478";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+            <script src="/static/bootstrap/js/bootstrap.min.js"></script> 
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top"> 
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="/">Psi Upsilion</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about/">About</a></li>
-              <li><a href="/calendar/">Calendar</a></li>
-              <li><a href="/brother_of_the_month/">Brother of the Month</a></li>
-              <li><a href="/rush/">Rush</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> 
+            <div id="wrap">
+                <div class="navbar navbar-inverse navbar-fixed-top"> 
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="brand" href="/">Psi Upsilion</a>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav">
+                                    <li  {% if request.get_full_path = "/" %} class="active" {% endif %} ><a href="/">Home</a></li>
+                                    <li  {% if request.get_full_path = "/rush/" %} class="active" {% endif %} ><a href="/rush/">Rush</a></li>
+                                    <li {% if request.get_full_path = "/phil/" %} class="active" {% endif %} ><a href="/phil/">Philanthropy</a></li>
+                                    <li {% if request.get_full_path = "/scholar/" %} class="active" {% endif %} ><a href="/scholar/">Scholar</a></li>
 
-    <div class="hero-unit">
-        <h1>{% block heading %}{% endblock %}</h1>
-    </div>
+                                    <li id="fat-menu" class="dropdown" id="chapter_roll"
+                                    {% if request.get_full_path = "/chapter_roll/" %} class="active" {% endif %}>
+                                    <a href="/chapter_roll/" role="button" class="dropdown-toggle" data-toggle="dropdown">Chapter Roll
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="chapter_roll">
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/chapter_roll/?q=exec">Executive</a>
+                                        </li>
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/chapter_roll/">Active Chapter</a>
+                                        </li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li {% if request.get_full_path = "/brother_of_the_month/" %} class="active" {% endif %} ><a href="/brother_of_the_month/">Brother of the Month</a></li>
+                                    </ul>
+                                    </li>
 
-    {% block content %}
-    {% endblock %}
+
+                                    <li  class="dropdown" id="about"
+                                    {% if request.get_full_path = "/chapter/" %} class="active" {% endif %}
+                                    {% if request.get_full_path = "/house/" %} class="active" {% endif %}
+                                    {% if request.get_full_path = "/international/" %} class="active" {% endif %}
+                                    {% if request.get_full_path = "/news/" %} class="active" {% endif %}
+                                    {% if request.get_full_path = "/instagram/" %} class="active" {% endif %}>
+                                    <a href="/about/" role="button" class="dropdown-toggle" data-toggle="dropdown">About
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="about">
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/chapter/">Our Chapter</a>
+                                        </li>
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/house/">Our House</a>
+                                        </li>
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/international/">International Office</a>
+                                        </li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/news/">Psi Us in the News</a>
+                                        </li>
+                                        <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="/instagram/" {% if request.get_full_path = "/instagram/" %} class="active" {% endif %}>Instagram</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/contact/" {% if request.get_full_path = "/contact/" %} class="active" {% endif %}>Contact Us</a></li>
+                                    </ul>
+                                    </li>
+                                    <!--                                    <li {% if request.get_full_path = "/contact/" %} class="active" {% endif %}><a href="/contact/">Contact Us</a></li> -->
+                                    <li  {% if request.get_full_path = "/calendar/" %} class="active" {% endif %} ><a href="/calendar/">Calendar</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="hero-unit">
+                        {% block heading %}{% endblock %}
+                    </div>
+
+                    {% block content %}
+                    {% endblock %}
+
+                    <div id="footer">
+                        <div class="container">
+                            <div class="fb-like" data-href="http://psiupsilon.ca" data-width="450" data-colorscheme="dark" data-show-faces="true" data-send="true"></div>
+                        </div>
+                        <div class="container">
+                            <p style="text-align: center; color:grey;">Copyright 2013 Psi Upsilon Zeta Zeta Chapter</p>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                    ga('create', 'UA-43446909-1', 'psiupsilon.ca');
+                    ga('send', 'pageview');
+
+                </script>
 
 
-  </body>
-</html>
+            </body>
+        </html>
 
