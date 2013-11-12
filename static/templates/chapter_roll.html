@@ -11,13 +11,16 @@ Chapter Roll
 {% endblock %}
 
 {% block content %}
+<div class="container">
 
-<div class="row-fluid">
-  <ul class="thumbnails">
-    {% for b in brothers %}
+      {% for b in brothers %}
+      {% if forloop.first %}
+          <ul class="thumbnails">
+      <div class="row-fluid">
+              {% endif %}
     <li class="span2">
     <div class="thumbnail" style="background-color:#ffffff;">
-      <img src="/static/{{ b.photo.url }}" class="img-round" width='300px' height='300px' >
+      <img src="/static/{{ b.photo.url }}" class="img-round" height="100pt"  >
       <div class="caption">
         <p>{{ b.name }}</p>
         <p><strong></strong>{{ b.phone_number }}</p>
@@ -30,7 +33,12 @@ Chapter Roll
 
     </div>
     </li>
+    {% if forloop.counter|divisibleby:6 %}
+    </div>
+    <div class="row-fluid">
+    {% endif %}
     {% endfor %}
   </ul>
+</div>
 </div>
 {% endblock %}

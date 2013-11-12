@@ -83,13 +83,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="brand" href="/">Psi Upsilion</a>
+                            <a class="brand" href="/">Psi Upsilon</a>
                             <div class="nav-collapse collapse">
                                 <ul class="nav">
                                     <li  {% if request.get_full_path = "/" %} class="active" {% endif %} ><a href="/">Home</a></li>
                                     <li  {% if request.get_full_path = "/rush/" %} class="active" {% endif %} ><a href="/rush/">Rush</a></li>
                                     <li {% if request.get_full_path = "/phil/" %} class="active" {% endif %} ><a href="/phil/">Philanthropy</a></li>
                                     <li {% if request.get_full_path = "/scholar/" %} class="active" {% endif %} ><a href="/scholar/">Scholar</a></li>
+                                    
 
                                     <li id="fat-menu" class="dropdown" id="chapter_roll"
                                     {% if request.get_full_path = "/chapter_roll/" %} class="active" {% endif %}>
@@ -147,15 +148,16 @@
                         {% block heading %}{% endblock %}
                     </div>
 
+                    <div class="container">
                     {% block content %}
                     {% endblock %}
+                    <div class="container">
 
                     <div id="footer">
                         <div class="container">
                             <div class="fb-like" data-href="http://psiupsilon.ca" data-width="450" data-colorscheme="dark" data-show-faces="true" data-send="true"></div>
-                        </div>
-                        <div class="container">
-                            <p style="text-align: center; color:grey;">Copyright 2013 Psi Upsilon Zeta Zeta Chapter</p>
+                            <p style="text-align: center;">Copyright 2013 Psi Upsilon Zeta Zeta Chapter</p>
+                            <!-- <p class="pull-right">Designed and built by Joey Gracey </p> -->
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 from forms import email_form
 from django.shortcuts import render_to_response, render
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 
 def email(request):
   if request.method == 'POST':
@@ -12,8 +13,8 @@ def email(request):
       from_addr = form.cleaned_data['from_addr']
       subject = form.cleaned_data['subject']
       message = form.cleaned_data['message']
-      send_mail(subject,message,from_addr,to_addr)
-      return HttpResponseRedirect('/thanks/')
+      send_mail(subject,message,from_addr,[to_addr])
+      return HttpResponseRedirect('/email_spoofer/')
   else:
     form = email_form()
   return render(request,'email_form.html', {

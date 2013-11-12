@@ -13,3 +13,5 @@ img {
 p.well {
 	color: #ffffff;
 }
+
+iframe, object, embed{max-width: 100%;}
